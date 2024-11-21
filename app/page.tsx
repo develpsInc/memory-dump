@@ -1,3 +1,13 @@
+/*
+original author : Prince Elorm
+Last updated by: 
+
+
+
+*/
+
+
+
 import Image from "next/image";
 
 export default function Home() {
@@ -21,6 +31,7 @@ export default function Home() {
             .
           </li>
           <li>Save and see your changes instantly. lililil</li>
+          <li>Prince</li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
