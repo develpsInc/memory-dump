@@ -1,3 +1,13 @@
+/*
+original author : Amon K. Daniel
+date : 11/21/2024
+Last updated by: Amon K. Daniel
+description: This config file is entry point for memory-dump appwrite database 
+
+
+
+*/
+
 import { Client, Account, Databases } from "appwrite";
 
 export const appwriteConfig = {
