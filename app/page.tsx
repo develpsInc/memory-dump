@@ -1,3 +1,5 @@
+
+
 import Image from "next/image";
 
 export default function Home() {
@@ -12,6 +14,10 @@ export default function Home() {
           height={38}
           priority
         />
+        <div>
+          <h1> Elorm is on Fire </h1>
+
+        </div>
         <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
            hello world
@@ -22,6 +28,8 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly. lililil</li>
           <li>Prince</li>
+          <li>Daniel I will toast you in FIFA</li>
+          <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo minima iste, veniam hic aut sed optio obcaecati nostrum quaerat doloremque a harum commodi libero dolor illo, voluptates cum quisquam laborum.</li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
