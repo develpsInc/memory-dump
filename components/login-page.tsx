@@ -1,3 +1,12 @@
+/*
+original author : Prince Elorm
+Last updated by: Prince Elorm
+date : 11/22/2024
+
+description :  login page functionality and ui
+
+*/
+
 "use client";
 
 import { Eye, EyeClosed, Link2 } from "lucide-react";

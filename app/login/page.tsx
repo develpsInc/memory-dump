@@ -1,3 +1,12 @@
+/*
+original author : Prince Elorm
+Last updated by: Prince Elorm
+date : 11/22/2024
+
+description :  entry pont of login page of the memory dump
+
+*/
+
 import LoginPage from "@/components/login-page";
 
 export default function Home() {

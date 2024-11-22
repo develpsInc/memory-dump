@@ -1,6 +1,10 @@
 /*
 original author : Prince Elorm
-Last updated by: 
+Last updated by: Prince Elorm
+date : 11/22/2024
+
+description : entry point or home page of the memory dump
+
 */
 
 import Link from "next/link";

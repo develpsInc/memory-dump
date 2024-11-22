@@ -1,3 +1,12 @@
+/*
+original author : Prince Elorm
+Last updated by: Prince Elorm
+date : 11/22/2024
+
+description :  register page functionality and ui
+
+*/
+
 "use client";
 
 import { Eye, EyeClosed, LogInIcon } from "lucide-react";
