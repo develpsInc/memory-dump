@@ -8,7 +8,7 @@ description: This config file is entry point for memory-dump appwrite database
 
 */
 
-import { Client, Account, Databases } from "appwrite";
+import { Client, Account, Databases, Storage } from "appwrite";
 
 export const appwriteConfig = {
   projectID: process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || "",
@@ -28,3 +28,4 @@ client.setEndpoint(appwriteConfig.url);
 
 export const account = new Account(client);
 export const databases = new Databases(client);
+export const storage = new Storage(client);
