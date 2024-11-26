@@ -14,11 +14,9 @@ export const appwriteConfig = {
   projectID: process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || "",
   url: process.env.NEXT_PUBLIC_APPWRITE_URL || "",
   databaseId: process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID || "",
+  storageId: process.env.NEXT_PUBLIC_STORAGE_ID || "",
   userCollectionId: process.env.NEXT_PUBLIC_USER_COLLECTION_ID || "",
-  imageCollectionId: process.env.NEXT_PUBLIC_IMAGE_COLLECTION_ID || "",
-  titleCollectionId: process.env.NEXT_PUBLIC_TITLE_COLLECTION_ID || "",
-  descriptionCollectionId:
-    process.env.NEXT_PUBLIC_DESCRIPTION_COLLECTION_ID || "",
+  postCollectionId: process.env.NEXT_PUBLIC_POST_COLLECTION_ID || "",
 };
 
 export const client = new Client();
