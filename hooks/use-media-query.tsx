@@ -1,3 +1,10 @@
+/*
+original author : Amon K. Daniel
+Last updated by: Amon K. Daniel
+date : 06/12/2024
+
+description :  media query for desktop devices
+*/
 import React from "react";
 
 // Hook for Media Query
