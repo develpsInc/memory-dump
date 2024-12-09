@@ -80,8 +80,6 @@ function LoginPage() {
             <Link href="/register">register</Link>
           </div>
         </div>
-
-        <UploadModal />
       </div>
     </div>
   );
