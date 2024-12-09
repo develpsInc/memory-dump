@@ -30,8 +30,14 @@ function LoginPage() {
           Log in to continue
         </p>
 
-        <form action="" className="mt-3 w-full">
-          <label htmlFor="email" className="text-gray-600  block">
+        <form
+          action=""
+          className="mt-3 w-full"
+        >
+          <label
+            htmlFor="email"
+            className="text-gray-600  block"
+          >
             email
           </label>
           <input
@@ -40,7 +46,10 @@ function LoginPage() {
             placeholder="mail@example.com"
           />
 
-          <label htmlFor="password" className="text-gray-600 mt-4 block">
+          <label
+            htmlFor="password"
+            className="text-gray-600 mt-4 block"
+          >
             password
           </label>
 
