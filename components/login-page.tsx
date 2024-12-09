@@ -12,7 +12,6 @@ description :  login page functionality and ui
 import { Eye, EyeClosed, Link2 } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
-import { UploadModal } from "./upload-image";
 
 function LoginPage() {
   const [showPassword, setShowPassword] = React.useState(false);
