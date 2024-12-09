@@ -12,6 +12,7 @@ description :  login page functionality and ui
 import { Eye, EyeClosed, Link2 } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
+import { UploadModal } from "./upload-image";
 
 function LoginPage() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -30,14 +31,8 @@ function LoginPage() {
           Log in to continue
         </p>
 
-        <form
-          action=""
-          className="mt-3 w-full"
-        >
-          <label
-            htmlFor="email"
-            className="text-gray-600  block"
-          >
+        <form action="" className="mt-3 w-full">
+          <label htmlFor="email" className="text-gray-600  block">
             email
           </label>
           <input
@@ -46,10 +41,7 @@ function LoginPage() {
             placeholder="mail@example.com"
           />
 
-          <label
-            htmlFor="password"
-            className="text-gray-600 mt-4 block"
-          >
+          <label htmlFor="password" className="text-gray-600 mt-4 block">
             password
           </label>
 
@@ -88,6 +80,8 @@ function LoginPage() {
             <Link href="/register">register</Link>
           </div>
         </div>
+
+        <UploadModal />
       </div>
     </div>
   );

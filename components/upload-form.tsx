@@ -40,6 +40,17 @@ export function UploadForm({ className }: React.ComponentProps<"form">) {
   const handleUpload = (event: React.FormEvent) => {
     event.preventDefault();
 
+    if (images.length > 2) {
+      toast({
+        variant: "destructive",
+        title: "Something happen",
+        description:
+          "You can't upload more than 2 images, only premium users can do this",
+      });
+
+      return;
+    }
+
     // Check for missing fields only on upload attempt
     if (!images.length || !title.trim() || !description.trim()) {
       toast({
@@ -85,10 +96,7 @@ export function UploadForm({ className }: React.ComponentProps<"form">) {
             // Display selected images with a remove feature
             <div className="overflow-y-auto h-32 w-full grid grid-cols-3 gap-2 p-2 relative">
               {images.map((image, index) => (
-                <div
-                  key={index}
-                  className="relative"
-                >
+                <div key={index} className="relative">
                   <Image
                     src={URL.createObjectURL(image)} // Create a temporary preview URL
                     alt={`Selected ${index + 1}`}
@@ -101,7 +109,7 @@ export function UploadForm({ className }: React.ComponentProps<"form">) {
                       e.stopPropagation(); // Prevent triggering file upload dialog
                       handleRemoveImage(index);
                     }}
-                    className="absolute top-1 right-1 bg-red-500 text-white text-xs rounded-full p-1 hover:bg-red-600 transition"
+                    className="absolute top-1 right-1 bg-red-500 text-white text-xs rounded-full p-1 hover:bg-red-600 transition w-6 h-6"
                   >
                     ✕
                   </button>
