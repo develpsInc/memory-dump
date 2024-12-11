@@ -20,6 +20,12 @@ function LoginPage() {
     setShowPassword((prev) => !prev);
   };
 
+  const moveToDashboard = (e: any) => {
+    window.location.href = "/dashboard";
+
+    e.preventDefault();
+  };
+
   return (
     <div className="flex justify-center px-3 ">
       <div className="flex flex-col">
@@ -67,7 +73,10 @@ function LoginPage() {
             logging in means you accept our terms and conditions
           </small>
 
-          <button className="block p-3 text-center w-full hover:bg-pink-400 transition-all duration-300 ease-in-out  hover:text-white bg-pink-500 rounded-md text-white font-semibold mt-4 ">
+          <button
+            className="block p-3 text-center w-full hover:bg-pink-400 transition-all duration-300 ease-in-out  hover:text-white bg-pink-500 rounded-md text-white font-semibold mt-4 "
+            onClick={moveToDashboard}
+          >
             log in
           </button>
         </form>
