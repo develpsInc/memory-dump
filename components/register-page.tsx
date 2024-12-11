@@ -22,6 +22,7 @@ function RegisterPage() {
 
   return (
     <div className="flex justify-center px-3 ">
+
       <div className="flex flex-col">
         <h1 className="mb-8 tracking-tighter text-4xl  text-start">
           Memory Dump Register
@@ -79,6 +80,10 @@ function RegisterPage() {
             Register
           </button>
         </form>
+
+
+
+
 
         <div className="mt-8 text-center flex justify-center items-center gap-2">
           account ?
