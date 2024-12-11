@@ -9,15 +9,70 @@ description :  register page functionality and ui
 
 "use client";
 
-import { Eye, EyeClosed, LogInIcon } from "lucide-react";
+import { Eye, EyeClosed, Loader2, LogInIcon } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "@/hooks/use-toast";
 
 function RegisterPage() {
   const [showPassword, setShowPassword] = React.useState(false);
-
+  const [loading, setLoading] = React.useState(false);
+  const API_URL_REGISTER = process.env.NEXT_PUBLIC_MEMORY_SIGN_UP!;
+  const router = useRouter();
   const showUserPassword = () => {
     setShowPassword((prev) => !prev);
+  };
+
+  const registerUser = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+      firstname: formData.get("first_name"),
+      lastname: formData.get("last_name"),
+    };
+
+    if (
+      data.email === "" ||
+      data.firstname === "" ||
+      data.password === "" ||
+      data.lastname === ""
+    ) {
+      toast({
+        variant: "destructive",
+        description: "Please fill all the fields",
+      });
+      return;
+    }
+    console.log("user data: ", JSON.stringify(data, null, 2));
+
+    const sendData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(API_URL_REGISTER, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok && response.status === 200) {
+          console.log("Registration successful");
+        } else {
+          console.error("Registration failed");
+        }
+      } catch (error) {
+        console.error("Error during registration: ", error);
+      } finally {
+        setLoading(false);
+        router.push("/login");
+      }
+    };
+
+    sendData();
   };
 
   return (
@@ -30,14 +85,24 @@ function RegisterPage() {
           Register to continue
         </p>
 
-        <form action="" className="mt-3 w-full">
+        <form onSubmit={registerUser} className="mt-3 w-full">
           <label htmlFor="username" className="text-gray-600  block">
-            username
+            first name
           </label>
           <input
             type="text"
             className="border-2 mt-4 border-pink-400 w-[350px] outline-none p-2 rounded-md focus:border-pink-400 focus:border-[3px] shadow-sm transition-all duration-100 ease-in-out placeholder:text-sm"
-            placeholder="@ elorm"
+            placeholder="john"
+            name="first_name"
+          />
+          <label htmlFor="username" className="text-gray-600 mt-3 block">
+            last name
+          </label>
+          <input
+            type="text"
+            className="border-2 mt-4 border-pink-400 w-[350px] outline-none p-2 rounded-md focus:border-pink-400 focus:border-[3px] shadow-sm transition-all duration-100 ease-in-out placeholder:text-sm"
+            placeholder="doe"
+            name="last_name"
           />
           <label htmlFor="email" className="text-gray-600 mt-3  block">
             email
@@ -46,6 +111,7 @@ function RegisterPage() {
             type="email"
             className="border-2 mt-4 border-pink-400 w-[350px] outline-none p-2 rounded-md focus:border-pink-400 focus:border-[3px] shadow-sm transition-all duration-100 ease-in-out placeholder:text-sm"
             placeholder="mail@example.com"
+            name="email"
           />
 
           <label htmlFor="password" className="text-gray-600 mt-4 block">
@@ -57,6 +123,7 @@ function RegisterPage() {
               type={showPassword ? "text" : "password"}
               className="border-2 mt-4 border-pink-400 w-[350px] outline-none p-2 rounded-md focus:border-pink-400 focus:border-[3px] shadow-sm transition-all duration-100 ease-in-out pr-10 mb-2 placeholder:text-sm"
               placeholder="******"
+              name="password"
             />
             {showPassword ? (
               <EyeClosed
@@ -75,8 +142,16 @@ function RegisterPage() {
             logging in means you accept our terms and conditions
           </small>
 
-          <button className="block p-3 text-center w-full hover:bg-pink-400 transition-all duration-300 ease-in-out  hover:text-white bg-pink-500 rounded-md text-white font-semibold mt-4 ">
-            Register
+          <button
+            className="flex items-center justify-center p-3 text-center w-full hover:bg-pink-400 transition-all duration-300 ease-in-out  hover:text-white bg-pink-500 rounded-md text-white  font-semibold mt-4 "
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? (
+              <Loader2 className="text-white animate-spin w-4 h-4" />
+            ) : (
+              "Register"
+            )}
           </button>
         </form>
 
