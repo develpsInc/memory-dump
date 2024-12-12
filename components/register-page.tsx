@@ -30,16 +30,10 @@ function RegisterPage() {
     const data = {
       email: formData.get("email"),
       password: formData.get("password"),
-      firstname: formData.get("first_name"),
-      lastname: formData.get("last_name"),
+      username: formData.get("username"),
     };
 
-    if (
-      data.email === "" ||
-      data.firstname === "" ||
-      data.password === "" ||
-      data.lastname === ""
-    ) {
+    if (data.email === "" || data.password === "" || data.username === "") {
       toast({
         variant: "destructive",
         description: "Please fill all the fields",
@@ -61,6 +55,10 @@ function RegisterPage() {
 
         if (response.ok && response.status === 200) {
           console.log("Registration successful");
+          toast({
+            description: "Sign up successful, please login next",
+          
+          });
         } else {
           console.error("Registration failed");
         }
@@ -87,23 +85,15 @@ function RegisterPage() {
 
         <form onSubmit={registerUser} className="mt-3 w-full">
           <label htmlFor="username" className="text-gray-600  block">
-            first name
+            username
           </label>
           <input
             type="text"
             className="border-2 mt-4 border-pink-400 w-[350px] outline-none p-2 rounded-md focus:border-pink-400 focus:border-[3px] shadow-sm transition-all duration-100 ease-in-out placeholder:text-sm"
             placeholder="john"
-            name="first_name"
+            name="username"
           />
-          <label htmlFor="username" className="text-gray-600 mt-3 block">
-            last name
-          </label>
-          <input
-            type="text"
-            className="border-2 mt-4 border-pink-400 w-[350px] outline-none p-2 rounded-md focus:border-pink-400 focus:border-[3px] shadow-sm transition-all duration-100 ease-in-out placeholder:text-sm"
-            placeholder="doe"
-            name="last_name"
-          />
+
           <label htmlFor="email" className="text-gray-600 mt-3  block">
             email
           </label>

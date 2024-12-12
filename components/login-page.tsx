@@ -10,8 +10,7 @@ description :  login page functionality and ui
 "use client";
 
 import { toast } from "@/hooks/use-toast";
-import { response } from "express";
-import { Eye, EyeClosed, Link2 } from "lucide-react";
+import { Eye, EyeClosed, Link2, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as React from "react";
@@ -64,14 +63,14 @@ function LoginPage() {
         if (response.ok && response.status === 200) {
           console.log("login successful");
           router.push("/dashboard");
+          toast({
+            description: "Login successful",
+          });
         } else if (response.status === 403) {
           toast({
             variant: "destructive",
             description: "Invalid credentials",
           });
-        }
-        {
-          console.error("Login failed");
         }
       } catch (error) {
         console.error("Error during login: ", error);
@@ -133,10 +132,14 @@ function LoginPage() {
           </small>
 
           <button
-            className="block p-3 text-center w-full hover:bg-pink-400 transition-all duration-300 ease-in-out  hover:text-white bg-pink-500 rounded-md text-white font-semibold mt-4 "
+            className="flex flex-col justify-center items-center p-3 text-center w-full hover:bg-pink-400 transition-all duration-300 ease-in-out  hover:text-white bg-pink-500 rounded-md text-white font-semibold mt-4 "
             type="submit"
           >
-            log in
+            {loading ? (
+              <Loader2 className="text-white animate-spin w-4 h-4" />
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
 
