@@ -9,8 +9,10 @@ description :  login page functionality and ui
 
 "use client";
 
-import { Eye, EyeClosed, Link2 } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
+import { Eye, EyeClosed, Link2, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 
 function LoginPage() {
@@ -18,6 +20,66 @@ function LoginPage() {
 
   const showUserPassword = () => {
     setShowPassword((prev) => !prev);
+  };
+
+  const [loading, setLoading] = React.useState(false);
+  const API_URL_LOGIN = process.env.NEXT_PUBLIC_MEMORY_LOGIN!;
+  const router = useRouter();
+
+  // const moveToDashboard = (e: any) => {
+  //   window.location.href = "/dashboard";
+
+  //   e.preventDefault();
+  // };
+
+  const loginUser = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+
+    if (data.email === "" || data.password === "") {
+      toast({
+        variant: "destructive",
+        description: "Please fill all the fields",
+      });
+      return;
+    }
+    console.log("user data: ", JSON.stringify(data, null, 2));
+
+    const sendData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(API_URL_LOGIN, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok && response.status === 200) {
+          console.log("login successful");
+          router.push("/dashboard");
+          toast({
+            description: "Login successful",
+          });
+        } else if (response.status === 403) {
+          toast({
+            variant: "destructive",
+            description: "Invalid credentials",
+          });
+        }
+      } catch (error) {
+        console.error("Error during login: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    sendData();
   };
 
   return (
@@ -30,7 +92,7 @@ function LoginPage() {
           Log in to continue
         </p>
 
-        <form action="" className="mt-3 w-full">
+        <form onSubmit={loginUser} className="mt-3 w-full">
           <label htmlFor="email" className="text-gray-600  block">
             email
           </label>
@@ -38,6 +100,7 @@ function LoginPage() {
             type="email"
             className="border-2 mt-4 border-pink-400 w-[350px] outline-none p-2 rounded-md focus:border-pink-400 focus:border-[3px] shadow-sm transition-all duration-400 ease-in-out placeholder:text-sm"
             placeholder="mail@example.com"
+            name="email"
           />
 
           <label htmlFor="password" className="text-gray-600 mt-4 block">
@@ -49,6 +112,7 @@ function LoginPage() {
               type={showPassword ? "text" : "password"}
               className="border-2 mt-4 border-pink-400 w-[350px] outline-none p-2 rounded-md focus:border-pink-400 focus:border-[3px] shadow-sm transition-all duration-400 ease-in-out pr-10 mb-2 placeholder:text-sm"
               placeholder="******"
+              name="password"
             />
             {showPassword ? (
               <EyeClosed
@@ -67,8 +131,15 @@ function LoginPage() {
             logging in means you accept our terms and conditions
           </small>
 
-          <button className="block p-3 text-center w-full hover:bg-pink-400 transition-all duration-300 ease-in-out  hover:text-white bg-pink-500 rounded-md text-white font-semibold mt-4 ">
-            log in
+          <button
+            className="flex flex-col justify-center items-center p-3 text-center w-full hover:bg-pink-400 transition-all duration-300 ease-in-out  hover:text-white bg-pink-500 rounded-md text-white font-semibold mt-4 "
+            type="submit"
+          >
+            {loading ? (
+              <Loader2 className="text-white animate-spin w-4 h-4" />
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
 
