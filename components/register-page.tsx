@@ -14,9 +14,11 @@ import Link from "next/link";
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "@/hooks/use-toast";
+import { isAuthenticated } from "@/lib/authenticated";
 
 function RegisterPage() {
   const [showPassword, setShowPassword] = React.useState(false);
+  const [userToken, setUserToken] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const API_URL_REGISTER = process.env.NEXT_PUBLIC_MEMORY_SIGN_UP!;
   const router = useRouter();
@@ -55,12 +57,16 @@ function RegisterPage() {
 
         if (response.ok && response.status === 200) {
           console.log("Registration successful");
+          const uservalue = localStorage.getItem("user-key") || "";
+          setUserToken(uservalue);
+          isAuthenticated(userToken);
+          console.log("user-token", userToken);
           toast({
             description: "Sign up successful, please login next",
-          
           });
         } else {
           console.error("Registration failed");
+          router.refresh();
         }
       } catch (error) {
         console.error("Error during registration: ", error);
