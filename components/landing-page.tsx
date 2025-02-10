@@ -10,15 +10,16 @@ description :  entry point of landing page of the memory dump
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 export default function LandingPage() {
   return (
-    <div className="max-h-screen flex flex-col items-center px-4 ">
+    <div className="flex flex-col items-center px-4 ">
       {/* Navbar */}
       <nav className="w-full flex justify-between items-center px-8 mb-10">
         <h1 className="text-2xl font-semibold">Memory Dump</h1>
         <div className="flex gap-4">
-          <Link
+          {/* <Link
             href={"/login"}
             className="bg-pink-500 hover:bg-pink-400 text-white font-semibold px-4 py-2 text-lg rounded-xl"
           >
@@ -29,12 +30,39 @@ export default function LandingPage() {
             className="bg-pink-500 hover:bg-pink-400 text-white rounded-xl font-semibold px-4 py-2 text-lg"
           >
             Sign Up
-          </Link>
+          </Link> */}
+
+          <Button
+            asChild
+            variant={"default"}
+            size={"lg"}
+            className="bg-pink-500 hover:bg-pink-400 text-white font-semibold px-4 py-2 text-lg rounded-xl"
+          >
+            <Link
+              href={"/login"}
+              className="bg-pink-500 hover:bg-pink-400 text-white font-semibold px-4 py-2 text-lg rounded-xl"
+            >
+              Log In
+            </Link>
+          </Button>
+          <Button
+            asChild
+            variant={"outline"}
+            size={"lg"}
+            className="bg-pink-500 hover:bg-pink-400 text-white font-semibold px-4 py-2 text-lg rounded-xl"
+          >
+            <Link
+              href={"/register"}
+              className="bg-pink-500 hover:bg-pink-400 text-white font-semibold px-4 py-2 text-lg rounded-xl"
+            >
+              Register
+            </Link>
+          </Button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="text-center mt-10 max-w-2xl flex-grow">
+      <section className="flex flex-col justify-center items-center ">
         <h2 className="text-5xl font-semibold mb-6 tracking-tighter">
           Welcome to Memory Dump
         </h2>
@@ -59,10 +87,7 @@ export default function LandingPage() {
               desc: "Your files remain private and protected.",
             },
           ].map((feature, index) => (
-            <Card
-              key={index}
-              className="p-6 rounded-xl shadow"
-            >
+            <Card key={index} className="p-6 rounded-xl shadow">
               <CardContent>
                 <h3 className="text-lg font-medium mb-2">{feature.title}</h3>
                 <p className="text-gray-400 text-sm">{feature.desc}</p>
