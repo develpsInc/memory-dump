@@ -7,7 +7,12 @@ function HomePage() {
     <div className="mt-10">
       {/* nav bar */}
       <nav className="flex justify-between items-center ">
-        <Image src={"globe.svg"} width={25} height={25} alt="user-image" />
+        <Image
+          src={"globe.svg"}
+          width={25}
+          height={25}
+          alt="user-image"
+        />
         <UploadModal />
       </nav>
 
@@ -17,7 +22,7 @@ function HomePage() {
           <h1 className="text-2xl font-extrabold tracking-tighter md:text-4xl">
             Feeds
           </h1>
-          {/* <small className="text-white bg-pink-500 p-[4px] border-1 border-black rounded-full font-bold text-xs">
+          {/* <small className="text-white bg-pink-500 p-[4px] border-1 border-black rounded-full font-bold text-xs"> 
             curated for you
           </small> */}
 
@@ -38,7 +43,12 @@ function HomePage() {
                 height={200}
                 className="rounded-md border-2 border-black p-3 translate-x-3"
               />
-              <Image src={"file.svg"} alt="a file" width={200} height={200} />
+              <Image
+                src={"file.svg"}
+                alt="a file"
+                width={200}
+                height={200}
+              />
             </div>
           </div>
         </div>
